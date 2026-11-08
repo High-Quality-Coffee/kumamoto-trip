@@ -1,0 +1,10 @@
+rules_version = '2';
+// 이 앱은 Next.js 서버(firebase-admin)로만 DB에 접근해요.
+// 브라우저에서 직접 읽고 쓰는 건 전부 막아요.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
